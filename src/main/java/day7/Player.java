@@ -1,13 +1,15 @@
 package day7;
 
+import java.util.Random;
+
 public class Player {
 	private int stamina;
 	private static final int MAX_STAMINA = 100;
 	private static final int MIN_STAMINA = 0;
 	private static int countPlayers = 0;
 
-	public Player(int stamina) {
-		this.stamina = stamina;
+	public Player() {
+		this.stamina = new Random().nextInt(11) + 90;
 		if (countPlayers < 6) {
 			countPlayers++;
 		}
@@ -22,14 +24,12 @@ public class Player {
 	}
 
 	public void run() {
-//		System.out.println("Player is running...");
-		if (this.stamina > MIN_STAMINA + 1) {
+		if (this.stamina > MIN_STAMINA) {
 			this.stamina -= 1;
 		} else {
-			this.stamina -= 1;
 			countPlayers--;
+			return;
 		}
-
 	}
 
 	public static void info() {
